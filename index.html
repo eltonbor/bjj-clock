@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./index.css"/>
+    <script src="./jquery.min.js"></script>
+    <script src="./jquery.fittext.js"></script>
+  </head>
+  <body>
+    <div id="clock">05:00</div>
+    <div id="settingsPopup">
+      <div><button onclick="setFightTimer(300,60)">5/60</button></div>
+      <div><button onclick="setFightTimer(300,30)">5/30</button></div>
+      <div><button onclick="setFightTimer(240,60)">4/60</button></div>
+      <div><button onclick="setFightTimer(240,30)">4/30</button></div>
+      <div><button onclick="setFightTimer(180,60)">3/60</button></div>
+      <div><button onclick="setFightTimer(180,30)">3/30</button></div>
+      <div><button onclick="setFightTimer(120,60)">2/60</button></div>
+      <div><button onclick="setFightTimer(120,30)">2/30</button></div>
+    </div>
+    <div id="settingsPanel">
+      <button id="play" onclick="playButton()">▶️</button>
+      <button id="pause" onclick="pauseButton()">⏸️</button>
+      <button id="stop" onclick="stopButton()">⏹️</button>
+      <button id="settings" onclick="settingsButton()">⚙️</button>
+    </div>
+    <script type="text/javascript" src="./index.js"></script>
+  </body>
+</html>
