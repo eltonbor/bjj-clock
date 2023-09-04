@@ -18,6 +18,7 @@ function formatTimer(seconds) {
 var seconds = timerSeconds;
 var timeout;
 var isPlaying;
+var isRestTimer = false;
 
 function playButton() {
   if (isPlaying) {
@@ -31,10 +32,16 @@ function play() {
   seconds = seconds - 1;
   if (seconds === 0) {
     beep();
-    if (!rest) {
-      rest = true;
+  }
+  if (seconds > 0 && seconds < 4) {
+    shortBeep();
+  }
+  if (seconds === -1) {
+    if (!isRestTimer) {
+      isRestTimer = true;
       seconds = restSeconds;
     } else {
+      isRestTimer = false;
       seconds = timerSeconds;
     }
   }
@@ -52,6 +59,7 @@ function pauseButton() {
 function stopButton() {
   pauseButton();
   seconds = timerSeconds;
+  isRestTimer = false;
   updateClock();
 }
 
@@ -59,50 +67,34 @@ function settingsButton() {
   stopButton();
   settingsPopup.show();
   clock.hide();
+  window.isSettingsPopupShow = true;
 }
 
 function updateClock() {
-  clock.html(formatTimer(seconds));
+  var formatted = formatTimer(seconds);
+  if (formatted.startsWith('0')) {
+    formatted = formatted.slice(1, formatted.length);
+  }
+  clock.html(formatted);
 }
-
-var panelButtons = [$("#play"), $("#pause"), $("#stop"), $("#settings")];
-var panelButtonsSelectedIndex = 0;
-document.addEventListener("keydown", function keypress(e) {
-  console.log(e.code);
-  if (e.code === "Enter" || e.code === "Space ") {
-    panelButtons[panelButtonsSelectedIndex].trigger("click");
-    return;
-  }
-  if (e.code === "Escape") {
-    stopButton();
-    setFightTimer(timerSeconds, restSeconds);
-  }
-  if (e.code === "ArrowRight") {
-    panelButtonsSelectedIndex++;
-  }
-  if (e.code === "ArrowLeft") {
-    panelButtonsSelectedIndex--;
-  }
-  if (panelButtonsSelectedIndex === -1) {
-    panelButtonsSelectedIndex = panelButtons.length - 1;
-  }
-  if (panelButtonsSelectedIndex > panelButtons.length - 1) {
-    panelButtonsSelectedIndex = 0;
-  }
-  panelButtons.forEach((b) => b.removeClass("selected"));
-  panelButtons[panelButtonsSelectedIndex].addClass("selected");
-});
-panelButtons[panelButtonsSelectedIndex].addClass("selected");
 
 function setFightTimer(fight, rest) {
   timerSeconds = fight;
   restSeconds = rest;
   seconds = timerSeconds;
+  isRestTimer = false;
   updateClock();
   settingsPopup.hide();
   clock.show();
+  window.isSettingsPopupShow = false;
 }
 
 function beep() {
-  console.log("beep");
+  longBeep();
+  $('body').addClass('beep');
+  setTimeout(function() {
+    $('body').removeClass('beep');
+  }, 1000);
 }
+
+updateClock();
