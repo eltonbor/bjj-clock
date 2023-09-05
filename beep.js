@@ -4,7 +4,7 @@ function longBeep() {
   oscillator.type = "sine";
   oscillator.frequency.value = 800;
   oscillator.connect(context.destination);
-  oscillator.start(); 
+  oscillator.start();
   // Beep for 1000 milliseconds
   setTimeout(function () {
     oscillator.stop();
@@ -17,7 +17,7 @@ function shortBeep() {
   oscillator.type = "sine";
   oscillator.frequency.value = 800;
   oscillator.connect(context.destination);
-  oscillator.start(); 
+  oscillator.start();
   // Beep for 100 milliseconds
   setTimeout(function () {
     oscillator.stop();

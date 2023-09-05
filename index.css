@@ -1,15 +1,16 @@
-@font-face{
-  font-family:'digital-clock-font';
-  src: url('digital-7.mono.ttf');
- }
+@font-face {
+  font-family: "digital-clock-font";
+  src: url("digital-7.mono.ttf");
+}
 
 body {
   color: #ffffff;
   background-color: #000000;
+  overflow: hidden;
 }
 body.beep {
   color: #000000;
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 #clock {
   font-family: digital-clock-font;
@@ -31,7 +32,6 @@ body.beep {
   text-align: center;
 }
 
-
 #settingsPanel button {
   height: 45px;
   width: 53px;
@@ -47,7 +47,7 @@ button.selected {
 
 #settingsPopup {
   display: none;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
