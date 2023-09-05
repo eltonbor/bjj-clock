@@ -29,6 +29,9 @@ function playButton() {
 }
 
 function play() {
+  if (!isPlaying) {
+    return;
+  }
   seconds = seconds - 1;
   if (seconds === 0) {
     beep();
@@ -72,7 +75,7 @@ function settingsButton() {
 
 function updateClock() {
   var formatted = formatTimer(seconds);
-  if (formatted.startsWith('0')) {
+  if (formatted.startsWith("0")) {
     formatted = formatted.slice(1, formatted.length);
   }
   clock.html(formatted);
@@ -91,10 +94,22 @@ function setFightTimer(fight, rest) {
 
 function beep() {
   longBeep();
-  $('body').addClass('beep');
-  setTimeout(function() {
-    $('body').removeClass('beep');
+  $("body").addClass("beep");
+  setTimeout(function () {
+    $("body").removeClass("beep");
   }, 1000);
 }
 
 updateClock();
+
+document.addEventListener("contextmenu", function keypress(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  if (window.isSettingsPopupShow) {
+    settingsPopup.hide();
+    clock.show();
+    window.isSettingsPopupShow = false;
+    return;
+  }
+  settingsButton();
+});
