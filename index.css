@@ -41,8 +41,7 @@ body.beep {
 }
 
 button.selected {
-  border: 3px solid rgb(255, 194, 25);
-  border-radius: 2px;
+  background-color: gold;
 }
 
 #settingsPopup {

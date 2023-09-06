@@ -2,8 +2,8 @@ var clock = $("#clock");
 var settingsPopup = $("#settingsPopup");
 var height = clock.height();
 clock.css({
-  "font-size": height / 1.2 + "px",
-  "line-height": height / 1.2 + "px",
+  "font-size": height / 1.05 + "px",
+  "line-height": height / 1.3 + "px",
 });
 
 var timerSeconds = 300;
@@ -21,6 +21,7 @@ var isPlaying;
 var isRestTimer = false;
 
 function playButton() {
+  startAudio();
   if (isPlaying) {
     return;
   }
