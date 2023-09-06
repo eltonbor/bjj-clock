@@ -11,29 +11,14 @@ document.addEventListener("keydown", function keypress(e) {
   mainListener(e.code);
 });
 
-var panelButtons = [$("#play"), $("#pause"), $("#stop"), $("#settings")];
-var panelButtonsSelectedIndex = 0;
-panelButtons[panelButtonsSelectedIndex].addClass("selected");
 function mainListener(code) {
-  if (code === "Enter" || code === "Space ") {
-    panelButtons[panelButtonsSelectedIndex].trigger("click");
-    return;
+  if (code === "Enter" || code === "Space") {
+    if (window.isPlaying) {
+      pauseButton();
+    } else {
+      playButton();
+    }
   }
-
-  if (code === "ArrowRight") {
-    panelButtonsSelectedIndex++;
-  } else if (code === "ArrowLeft") {
-    panelButtonsSelectedIndex--;
-  }
-
-  if (panelButtonsSelectedIndex === -1) {
-    panelButtonsSelectedIndex = panelButtons.length - 1;
-  }
-  if (panelButtonsSelectedIndex > panelButtons.length - 1) {
-    panelButtonsSelectedIndex = 0;
-  }
-  panelButtons.forEach((b) => b.removeClass("selected"));
-  panelButtons[panelButtonsSelectedIndex].addClass("selected");
 }
 
 // prettier-ignore

@@ -17,20 +17,20 @@ function formatTimer(seconds) {
 
 var seconds = timerSeconds;
 var timeout;
-var isPlaying;
 var isRestTimer = false;
+window.isPlaying = false;
 
 function playButton() {
   startAudio();
-  if (isPlaying) {
+  if (window.isPlaying) {
     return;
   }
-  isPlaying = true;
+  window.isPlaying = true;
   play();
 }
 
 function play() {
-  if (!isPlaying) {
+  if (!window.isPlaying) {
     return;
   }
   seconds = seconds - 1;
@@ -56,7 +56,7 @@ function play() {
 }
 
 function pauseButton() {
-  isPlaying = false;
+  window.isPlaying = false;
   clearTimeout(timeout);
 }
 
