@@ -80,6 +80,13 @@ function updateClock() {
     formatted = formatted.slice(1, formatted.length);
   }
   clock.html(formatted);
+  if (isRestTimer) {
+    clock.removeClass("fightClock");
+    clock.addClass("restClock");
+  } else {
+    clock.addClass("fightClock");
+    clock.removeClass("restClock");
+  }
 }
 
 function setFightTimer(fight, rest) {
