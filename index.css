@@ -45,8 +45,8 @@ button.selected {
 
 #settingsPopupFlex div button {
   width: 80%;
-  font-size: 100px;
-  line-height: 200px;
+  font-size: 80px;
+  line-height: 100px;
 }
 
 .fightClock {

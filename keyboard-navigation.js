@@ -21,13 +21,8 @@ function mainListener(code) {
   }
 }
 
-// prettier-ignore
-var settingsButtons = [
-  $("#t-7-120"), $("#t-7-60"),
-  $("#t-5-60"), $("#t-5-30"),
-  $("#t-4-60"), $("#t-4-30"),
-  $("#t-3-60"), $("#t-3-30"),
-];
+var settingsButtons = $("#settingsPopupFlex > div > button").toArray().map($);
+
 var settingsButtonsSelectedIndex = 0;
 settingsButtons[settingsButtonsSelectedIndex].addClass("selected");
 
